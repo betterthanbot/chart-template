@@ -1,0 +1,15 @@
+# ============================================================
+# ConfigMap — Application environment variables
+# Non-sensitive config only. Secrets go in secret.yaml.
+# ============================================================
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "my-webapp.fullname" . }}-config
+  labels:
+    {{- include "my-webapp.labels" . | nindent 4 }}
+  namespace: {{ .Release.Namespace }}
+data:
+  {{- range $key, $value := .Values.config }}
+  {{ $key }}: {{ $value | quote }}
+  {{- end }}
