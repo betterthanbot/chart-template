@@ -95,7 +95,7 @@ service:
 # -------------------------------------------------------
 route:
   enabled: true
-  hostname: my-webapp.example.com
+  # hostname: my-webapp.example.com
   tls:
     termination: edge   # edge | passthrough | reencrypt
 
