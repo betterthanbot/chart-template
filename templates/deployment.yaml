@@ -115,9 +115,18 @@ spec:
           volumeMounts:
             {{- if .Values.persistence.enabled }}
             - name: app-data
-              # UBI9 httpd-24 document root — replaces /usr/share/nginx/html
+              # UBI9 httpd-24 document root
               mountPath: /var/www/html
             {{- end }}
+            # Default index.html — prevents 403 on empty PVC at first boot.
+            # Once real content exists on the PVC this file is shadowed.
+            - name: www-defaults
+              mountPath: /var/www/html/index.html
+              subPath: index.html
+            # Suppress AH00558 ServerName warning
+            - name: www-defaults
+              mountPath: /etc/httpd/conf.d/servername.conf
+              subPath: servername.conf
 
       volumes:
         {{- if .Values.persistence.enabled }}
@@ -125,3 +134,6 @@ spec:
           persistentVolumeClaim:
             claimName: {{ include "my-webapp.fullname" . }}-app
         {{- end }}
+        - name: www-defaults
+          configMap:
+            name: {{ include "my-webapp.fullname" . }}-www
