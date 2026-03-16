@@ -7,8 +7,6 @@
 
 replicaCount: 1
 
-namespace: my-web-app
-
 # -------------------------------------------------------
 # Application Image
 # UBI9 httpd-24: OCP-certified, runs as non-root (uid 1001)
