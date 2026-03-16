@@ -1,4 +1,4 @@
-<!-- # my-webapp Helm Chart — v0.2.0
+# my-webapp Helm Chart — v0.2.0
 
 A Helm chart for deploying a basic web application on **OpenShift Container Platform 4.x**.
 
@@ -97,4 +97,4 @@ This satisfies OCP `restricted-v2` SCC without granting any elevated privileges.
 --set database.credentials.password=<value>
 ```
 
-For production, use **Sealed Secrets** or **HashiCorp Vault with the Agent Injector**. -->
+For production, use **Sealed Secrets** or **HashiCorp Vault with the Agent Injector**.

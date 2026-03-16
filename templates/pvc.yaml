@@ -1,7 +1,7 @@
 # ============================================================
 # PersistentVolumeClaim — Application web content / uploads
 # ============================================================
-{{- if .Values.persistence.enabled -}}
+{{- if .Values.persistence.enabled }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -20,12 +20,12 @@ spec:
   storageClassName: {{ .Values.persistence.storageClass | quote }}
   {{- end }}
 {{- end }}
----
 # ============================================================
 # PersistentVolumeClaim — PostgreSQL data volume
 # Only created when database.engine = postgresql
 # ============================================================
 {{- if and .Values.database.enabled (eq .Values.database.engine "postgresql") }}
+---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -45,12 +45,12 @@ spec:
   storageClassName: {{ .Values.database.postgresql.persistence.storageClass | quote }}
   {{- end }}
 {{- end }}
----
 # ============================================================
 # PersistentVolumeClaim — MySQL data volume
 # Only created when database.engine = mysql
 # ============================================================
 {{- if and .Values.database.enabled (eq .Values.database.engine "mysql") }}
+---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
